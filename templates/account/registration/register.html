@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Registre-se{% endblock %}
+{% block content %}
+
+
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <div class="col-md-12">
+            <div class="login d-flex align-items-center py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 col-lg-7  mx-auto">
+                             <form class="account-forms p-5 col-lg-8 mx-auto mysb" action="." method="post">
+                                {% csrf_token %}
+                                {{ form }}
+                                <h3 class="mb-1 font-weight-bold">Crie sua conta</h3>
+                                <p class="mb-4">e venha aproveitar nossas ofertas.</p>
+
+                                {% if forms.errors %}
+                                <p>campos invalido:</p>
+                                {% for field in forms %}
+                                {% if field.errors %}
+                                <div class="alert alert-primary" role="alert">
+                                    {{ field.label }}: {{ field.errors|striptags }}
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+
+                                <label>{{ forms.user_name.label }}<span class="text-muted small">
+                                        (Obrigatorio)</span></label>
+                                {{ forms.user_name }}
+
+                                <label>{{ forms.email.label}}<span class="text-muted small">
+                                        (Required)</span></label>
+                                {{ forms.email }}
+
+                                <label>{{ forms.password.label}}<span class="text-muted mb-4">
+                                        </span></label>
+                                 <small class="forms-text text-muted mb-4 small">
+                                    (8 Caracteres e 1 digito)
+                                </small>
+                                {{ forms.password }}
+
+                                <label>{{ forms.password2.label}}<span class="text-muted small">
+                                        (Required)</span></label>
+                                {{ forms.password2 }}
+                                
+                                <button class="btn btn-primary btn-block py-2 mb-4 mt-5 fw500 w-100" type="submit">cadastrar</button>
+                                <p class="text-center">
+                                    <a href="">ja tem um conta?</a>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

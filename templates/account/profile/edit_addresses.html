@@ -1,0 +1,47 @@
+{% extends "../sub_base.html" %}
+{% block title %}Edit Addresses{% endblock %}
+
+{% block sub_content %}
+<div class="col-6 mx-auto">
+  <h1 class="h3">Adicionar/editar endereço</h1>
+  <div>Add a new delivery <b>address</b> and delivery preferences</div>
+  <hr />
+  <form name="address_form" class="account-form" method="POST" enctype="multipart/form-data">
+   
+    
+    {% csrf_token %}
+    <label class="small fw-bold">{{ form.address_type.label}}</label>
+    {{ form.address_type }}
+    <label class="small fw-bold">{{ form.postal_code.label}}</label>
+    {{ form.postal_code }}
+    <label class="small fw-bold">{{ forms.country.label}}</label>
+    {{ forms.country }}
+    <label class="small fw-bold">{{ form.state.label}}</label>
+    {{ form.state }}
+    <label class="small fw-bold">{{ form.city.label}}</label>
+    {{ form.city }}
+    <label class="small fw-bold">{{ form.district.label}}</label>
+    {{ form.district }}
+    <label class="small fw-bold">{{ form.street.label}}</label>
+    {{ form.street }}
+    <label class="small fw-bold">{{ form.number.label}}</label>
+    {{ form.number }}
+    <label class="small fw-bold">{{ form.complement.label}}</label>
+    {{ form.complement }}
+
+    <button class="btn btn-primary btn-block py-2 mb-4 mt-4 fw-bold w-100" type="button" value="Submit" onclick="submitForm()"> adicionar endereço    </button>
+  </form>
+
+</div>
+
+<script> 
+function submitForm() {
+   var form = document.getElementsByName('address_form');
+
+   form.submit(); // Submit the form
+   
+   form.reset();  // Reset all form data
+   return false; // Prevent page refresh
+}
+</script>
+{% endblock %}
